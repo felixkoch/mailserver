@@ -2,6 +2,8 @@ version: '3'
 services:
   mail:
     build: .
+    volumes:
+      - ./data:/data
   db:
     image: mysql:5.7
     restart: always
