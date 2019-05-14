@@ -1,3 +1,4 @@
 data
 db/var/lib/mysql/*
+mail/var/vmail/*
 !.gitkeep
