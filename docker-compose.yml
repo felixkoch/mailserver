@@ -6,6 +6,7 @@ services:
       - ./data:/data
       - ./mail/var/vmail:/var/vmail
       - ./mail/etc/dovecot/dovecot-sql.conf.ext:/etc/dovecot/dovecot-sql.conf.ext
+      - ./mail/etc/dovecot/conf.de/10-auth.conf:/etc/dovecot/conf.de/10-auth.conf
   db:
     image: mysql:5.7
     restart: always
