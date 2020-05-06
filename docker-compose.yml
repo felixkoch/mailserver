@@ -4,19 +4,19 @@ services:
     build: .
     volumes:
       - ./data:/data
-      - ./mail/var/vmail:/var/vmail
+      - ./vmail:/var/vmail
       #- ./mail/etc/dovecot/dovecot-sql.conf.ext:/etc/dovecot/dovecot-sql.conf.ext
       #- ./mail/etc/dovecot/conf.de/10-auth.conf:/etc/dovecot/conf.de/10-auth.conf
   db:
     image: mysql:5.7
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: notSecureChangeMe
-      MYSQL_DATABASE: postfixadmin
-      MYSQL_USER: postfixadmin
-      MYSQL_PASSWORD: example
+      MYSQL_ROOT_PASSWORD: CHANGEME
+      MYSQL_DATABASE: mail
+      MYSQL_USER: mail
+      MYSQL_PASSWORD: mailpassword
     volumes:
-      - ./db/var/lib/mysql:/var/lib/mysql
+      - ./mysql:/var/lib/mysql
   postfixadmin:
     depends_on:
       - db
@@ -27,6 +27,6 @@ services:
     environment:
       POSTFIXADMIN_DB_TYPE: mysqli
       POSTFIXADMIN_DB_HOST: db
-      POSTFIXADMIN_DB_USER: postfixadmin
-      POSTFIXADMIN_DB_NAME: postfixadmin
-      POSTFIXADMIN_DB_PASSWORD: example
+      POSTFIXADMIN_DB_USER: mail
+      POSTFIXADMIN_DB_NAME: mail
+      POSTFIXADMIN_DB_PASSWORD: mailpassword

@@ -29,7 +29,7 @@
 # );
 
 # Database driver: mysql, pgsql, sqlite
-#driver = 
+driver = mysql
 
 # Database connection string. This is driver-specific setting.
 #
