@@ -1,0 +1,5 @@
+user = mail
+password = mailpassword
+hosts = db
+dbname = mail
+query = SELECT goto FROM alias WHERE address='%s'
