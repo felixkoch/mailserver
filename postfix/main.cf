@@ -21,11 +21,35 @@ readme_directory = no
 # fresh installs.
 compatibility_level = 2
 
+# ---------------------------------
+# SASL parameters
+# ---------------------------------
+ 
+# Use Dovecot to authenticate.
+smtpd_sasl_type = dovecot
+# Referring to /var/spool/postfix/private/auth
+smtpd_sasl_path = private/auth
+smtpd_sasl_auth_enable = yes
+broken_sasl_auth_clients = yes
+smtpd_sasl_security_options = noanonymous
+smtpd_sasl_local_domain =
+smtpd_sasl_authenticated_header = yes
+
 
 
 # TLS parameters
 smtpd_tls_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem
 smtpd_tls_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
+
+# Let's Encrypt certificate.
+#smtpd_tls_cert_file=/etc/letsencrypt/live/mail.example.com/cert.pem
+#smtpd_tls_key_file=/etc/letsencrypt/live/mail.example.com/privkey.pem
+#smtpd_tls_CAfile=/etc/letsencrypt/live/mail.example.com/chain.pem
+
+smtpd_tls_mandatory_protocols=!SSLv2,!SSLv3
+smtpd_tls_exclude_ciphers = aNULL, eNULL, EXPORT, DES, RC4, MD5, PSK, aECDH, EDH-DSS-DES-CBC3-SHA, EDH-RSA-DES-CDC3-SHA, KRB5-DE5, CBC3-SHA
+smtpd_tls_dh1024_param_file = /etc/ssl/private/dhparams.pem
+
 smtpd_tls_security_level=may
 
 smtp_tls_CApath=/etc/ssl/certs
